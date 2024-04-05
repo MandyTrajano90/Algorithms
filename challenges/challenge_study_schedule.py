@@ -1,4 +1,4 @@
-def student_entry(entry) -> bool:
+def student_entry(entry: tuple[int, int]) -> bool:
     return (
         isinstance(entry, tuple)
         and len(entry) == 2
