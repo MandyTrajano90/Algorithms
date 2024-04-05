@@ -1,18 +1,14 @@
-def student_entry(entry: tuple[int, int]) -> bool:
-    return (
-        isinstance(entry, tuple)
-        and len(entry) == 2
-        and all(isinstance(i, int) for i in entry)
-    )
-
-
 def study_schedule(permanence_period, target_time):
-    if any(
-        not student_entry(entry) for entry in permanence_period
-            ) or not isinstance(target_time, int):
+    if target_time is None:
         return None
-    present_students = 0
-    for student_time in permanence_period:
-        if target_time >= student_time[0] and target_time <= student_time[1]:
-            present_students += 1
+
+    if not permanence_period or any(
+        not isinstance(start, int) or not isinstance(end, int) or end < start
+        for start, end in permanence_period
+    ):
+        return None
+
+    present_students = sum(
+        1 for start, end in permanence_period if start <= target_time <= end
+    )
     return present_students
