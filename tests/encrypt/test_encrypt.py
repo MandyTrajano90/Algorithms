@@ -12,4 +12,5 @@ def test_encrypt_message():
     assert str(error.value) == "tipo inválido para message"
 
     assert encrypt_message("XFAIL", 99) == "LIAFX"
-    
+    assert encrypt_message("XFAIL", 3) == "AFX_LI"
+    assert encrypt_message("XFAIL", 4) == "L_IAFX"
